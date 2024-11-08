@@ -1,12 +1,22 @@
-import OrdersList from './components/OrdersList';
+import React from 'react';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import Login from './components/Login';
+import UsersList from './components/UserLists';
+import './index.css';
 
-function App() {
+const AppContent: React.FC = () => {
+  const { token } = useAuth();
+  return token ? <UsersList /> : <Login />;
+};
+
+const App: React.FC = () => {
   return (
-    <div>
-      <h1>Restaurant App</h1>
-      <OrdersList />
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <AppContent />
+      </div>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
