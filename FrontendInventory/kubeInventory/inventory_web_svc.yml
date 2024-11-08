@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-order-luris-service
+  namespace: luris-finalproject
+spec:
+  selector:
+    app: inventory-order-luris
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP

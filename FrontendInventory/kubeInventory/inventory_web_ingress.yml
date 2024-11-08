@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: inventory-order-luris-ingress
+  namespace: luris-inventory
+spec:
+  rules:
+  - host: luris-inventory-order.duckdns.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: inventory-order-luris-service
+            port:
+              number: 80
