@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUsers } from '../api/userApi';
-import { useAuth } from '../context/AuthContext';
-
+import { useAuth } from 'react-oidc-context';
+import { getUserEmail } from '../api/getuserEmail'
 interface User {
   userId: number;
   name: string;
@@ -10,16 +10,23 @@ interface User {
 }
 
 const UsersList: React.FC = () => {
-  const { token, logout } = useAuth();
+  const { user } = useAuth();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [authenticatedEmail, setAuthenticatedEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    const getUsers = async () => {
-      if (!token) return;
+    const getEmailAndUsers = async () => {
+      if (!user || !user.id_token) return;
+
       try {
-        const data = await fetchUsers(token);
+        // Obtener el email del usuario autenticado
+        const email = await getUserEmail(user.id_token);
+        setAuthenticatedEmail(email);
+
+        // Obtener la lista de usuarios
+        const data = await fetchUsers(user.id_token);
         setUsers(data);
       } catch (err) {
         setError('Error loading users');
@@ -27,21 +34,19 @@ const UsersList: React.FC = () => {
         setLoading(false);
       }
     };
-    getUsers();
-  }, [token]);
+
+    getEmailAndUsers();
+  }, [user]);
 
   if (loading) return <p className="text-center text-gray-600 mt-10">Loading...</p>;
   if (error) return <p className="text-center text-red-500 mt-10">{error}</p>;
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-20 text-center">
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800">Employee List</h2>
-      <button
-        onClick={logout}
-        className="mb-6 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"
-      >
-        Logout
-      </button>
+      {/* <h2 className="text-2xl font-semibold mb-6 text-gray-800">Employee List</h2>
+      {authenticatedEmail && (
+        <p className="mb-4 text-gray-700">Authenticated User Email: {authenticatedEmail}</p>
+      )} */}
       <ul className="divide-y divide-gray-200">
         {users.map(user => (
           <li key={user.userId} className="flex justify-between items-center py-4">
