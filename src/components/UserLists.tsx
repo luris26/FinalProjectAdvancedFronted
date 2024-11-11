@@ -34,7 +34,7 @@ const UsersList: React.FC = () => {
         setLoading(false);
       }
     };
-
+    
     getEmailAndUsers();
   }, [user]);
 
@@ -43,10 +43,10 @@ const UsersList: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-20 text-center">
-      {/* <h2 className="text-2xl font-semibold mb-6 text-gray-800">Employee List</h2>
+      <h2 className="text-2xl font-semibold mb-6 text-gray-800">Employee List</h2>
       {authenticatedEmail && (
         <p className="mb-4 text-gray-700">Authenticated User Email: {authenticatedEmail}</p>
-      )} */}
+      )}
       <ul className="divide-y divide-gray-200">
         {users.map(user => (
           <li key={user.userId} className="flex justify-between items-center py-4">

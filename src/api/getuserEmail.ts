@@ -7,6 +7,8 @@ export const getUserEmail = async (token: string): Promise<string | null> => {
         const response = await axios.get(`${API_URL}/Users/email`, {
             withCredentials: true, 
         });
+        const token_topass = token;
+        console.log(token_topass)
         return response.data;
     } catch (error) {
         console.error("Error fetching user email:", error);
