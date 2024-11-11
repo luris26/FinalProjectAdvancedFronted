@@ -6,7 +6,7 @@ COPY package-lock.json ./
 RUN npm install
 COPY . .
 
-# ENV VITE_API_URL http://luris-inventory-order.duckdns.org
+ENV VITE_API_URL http://final-project-luris.duckdns.org
 RUN npm run build
 
 FROM nginx:latest
