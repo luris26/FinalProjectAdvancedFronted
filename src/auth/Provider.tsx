@@ -6,8 +6,8 @@ import { AuthProvider, AuthProviderProps } from "react-oidc-context";
 const oldConfig: AuthProviderProps = {
     authority: "https://auth.snowse.duckdns.org/realms/advanced-frontend/",
     client_id: "luris-client",
-    redirect_uri: "http://localhost:5173/",
-    // redirect_uri: "https://luris-directory-order.duckdns.org/",
+    // redirect_uri: "http://localhost:5173/",
+    redirect_uri: "https://final-project-luris.duckdns.org/",
     onSigninCallback: async (user) => {
         console.log("sign in in callback");
         const newUrl = window.location.href.split('?')[0];
