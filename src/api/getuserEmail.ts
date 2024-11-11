@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 const API_URL = 'http://localhost:5173/api'; 
+// const API_URL_DUCK = 'https://final-project-luris.duckdns.org/api';
 
 export const getUserEmail = async (token: string): Promise<string | null> => {
     try {
-        const response = await axios.get(`${API_URL}/Users/email`, {
+        const response = await axios.get(`api.${API_URL}/Users/email`, {
             withCredentials: true, 
         });
         const token_topass = token;
