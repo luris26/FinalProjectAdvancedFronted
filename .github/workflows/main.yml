@@ -17,5 +17,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: "Build Image and Push to Docker HUB"
+        run: |
+          docker build -t luris26/inventory-final:$GITHUB_RUN_ID .
+          docker push luris26/inventory-final:$GITHUB_RUN_ID
 #ADD THE CONFIG and see if runns
 
