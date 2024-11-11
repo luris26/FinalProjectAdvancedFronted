@@ -30,3 +30,4 @@ jobs:
               echo "Applying environment variables to $file"
               cat $file | envsubst | kubectl apply -f -
           done
+#checking xd
