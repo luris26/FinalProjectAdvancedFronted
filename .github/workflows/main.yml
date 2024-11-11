@@ -22,5 +22,12 @@ jobs:
         run: |
           docker build -t luris26/inventory-final:$GITHUB_RUN_ID .
           docker push luris26/inventory-final:$GITHUB_RUN_ID
+
+          - name: Build Kubernetes
+          run: |
+            for file in ./kubeInventory/*; do
+                echo "envsubst applying to $file"
+                cat $file | envsubst | kubectl apply -f -
+            done
 #ADD THE CONFIG and see if runns
 
