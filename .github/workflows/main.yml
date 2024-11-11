@@ -3,14 +3,15 @@ name: PupusasInventory
 on:
   push:
     branches:
-        - main 
+      - main 
 
 jobs:
   DeployingPipeline:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Connect to DockerHub
         uses: docker/login-action@v2
@@ -18,16 +19,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: "Build Image and Push to Docker HUB"
+      - name: Build Image and Push to Docker Hub
         run: |
-          docker build -t luris26/inventory-final:$GITHUB_RUN_ID .
-          docker push luris26/inventory-final:$GITHUB_RUN_ID
+          docker build -t luris26/inventory-final:${{ github.run_id }} .
+          docker push luris26/inventory-final:${{ github.run_id }}
 
-          - name: Build Kubernetes
-          run: |
-            for file in ./kubeInventory/*; do
-                echo "envsubst applying to $file"
-                cat $file | envsubst | kubectl apply -f -
-            done
-#ADD THE CONFIG and see if runns
-
+      - name: Build Kubernetes
+        run: |
+          for file in ./kubeInventory/*; do
+              echo "Applying environment variables to $file"
+              cat $file | envsubst | kubectl apply -f -
+          done
