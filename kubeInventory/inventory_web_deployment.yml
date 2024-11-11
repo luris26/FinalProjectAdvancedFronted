@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: inventory-order-luris
-        image: luris26/inventory:$GITHUB_RUN_ID
+        image: luris26/inventory-final:$GITHUB_RUN_ID
         ports:
         - containerPort: 80
