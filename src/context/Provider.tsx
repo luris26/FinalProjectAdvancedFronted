@@ -17,6 +17,7 @@ const oldConfig: AuthProviderProps = {
         document.cookie = `jwt_token=${user?.access_token}; expires=${expirationDate}`;
     },
     onRemoveUser: async() => {
+        window.location.replace('/login');
         console.log("remove")
         document.cookie = "jwt_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     }

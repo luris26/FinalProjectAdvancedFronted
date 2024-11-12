@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const apiClient = axios.create({
   // baseURL: 'http://localhost:5073/api',
-  baseURL: 'https://api.final-project-luris.duckdns.org/api',
+  baseURL: 'https://api.final-project-luris.du`ckdns.org/api',
   headers: {
     'Content-Type': 'application/json'
   }
