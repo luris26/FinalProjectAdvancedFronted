@@ -9,6 +9,8 @@ import Orders from './pages/Orders';
 import Menu from './pages/Menu';
 import Login from './pages/Login';
 import { useAuth } from 'react-oidc-context';
+import AddUser from './pages/AddUser';
+import EditUser from './pages/EditUser';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const auth = useAuth();
@@ -33,6 +35,8 @@ const App: React.FC = () => {
               <Route path="/users" element={<ProtectedRoute><UsersList /></ProtectedRoute>} />
               <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
               <Route path="/menu" element={<ProtectedRoute><Menu /></ProtectedRoute>} />
+              <Route path="/add-user" element={<ProtectedRoute><AddUser /></ProtectedRoute>} />
+              <Route path="/edit-user/:userId" element={<ProtectedRoute><EditUser /></ProtectedRoute>} />
             </Routes>
           </div>
         </Router>

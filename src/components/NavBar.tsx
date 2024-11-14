@@ -14,7 +14,6 @@ const Navbar: React.FC = () => {
     navigate('/login', { replace: true });
   };
 
-  // Escuchar los cambios en el estado de autenticación
   useEffect(() => {
     setIsAuthenticated(auth.isAuthenticated);
   }, [auth.isAuthenticated]);

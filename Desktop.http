@@ -1,0 +1,6 @@
+@Desktop_HostAddress = http://localhost:5283
+
+GET {{Desktop_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
