@@ -24,8 +24,7 @@ export const deleteUser = async (userId: number, token: string) => {
   });
   return response.data;
 };
-//http://localhost:5073/api/Users/add
-export const addUser = async (userAdded: { name: string; email: string; role: string; password: string }, token: string) => {
+commitexport const addUser = async (userAdded: { name: string; email: string; role: string; password: string }, token: string) => {
   const response = await apiClient.post('/add', userAdded, {
     headers: {
       Authorization: `Bearer ${token}`,
