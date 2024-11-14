@@ -6,7 +6,7 @@ RUN npm install
 
 COPY . .
 
-ENV VITE_API_URL=http://final-project-luris.duckdns.org
+ENV VITE_API_URL=https://final-project-luris.duckdns.org
 
 RUN npm run build
 
