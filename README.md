@@ -54,7 +54,7 @@ The schedule below includes tasks to complete each week to maintain steady progr
 |------------|---------------------------------------------------------------|---------------|
 | **Nov 6**  | Set up project structure, implement digital menu interface    | 5            |
 | **Nov 9**  | Complete order recording functionality                        | 10            |
-| **Nov 13** | Add order status tracking                                     | 10            |
+| **Nov 13** | Add user, delete                                              | 10            |
 | **Nov 16** | Build the sales summary dashboard                             | 10            |
 | **Nov 20** | Refine UI and improve styling                                 | -             |
 | **Nov 23** | Initial testing and debugging                                 | -             |
