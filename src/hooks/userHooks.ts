@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiClient = axios.create({
   // baseURL: "http://localhost:5073/api/Users",
-  baseURL: 'https://api.final-project-luris.duckdns.org/api',
+  baseURL: 'http://api.final-project-luris.duckdns.org/api',
   headers: {
     "Content-Type": "application/json",
   },
@@ -17,7 +17,7 @@ export const fetchUsers = async (token: string) => {
   return response.data;
 };
 export const deleteUser = async (userId: number, token: string) => {
-  const response = await apiClient.delete(`/${userId}`, {
+  const response = await apiClient.delete(`/delete/${userId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -40,7 +40,7 @@ export const updateUser = async (
   updatedUser: { name: string; email: string; role: string; password?: string },
   token: string
 ) => {
-  const response = await apiClient.put(`/Users/${userId}`, updatedUser, {
+  const response = await apiClient.put(`/edit/${userId}`, updatedUser, {
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
