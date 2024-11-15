@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useAuth } from 'react-oidc-context';
+// import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
+// import { useAuth } from 'react-oidc-context';
 
-interface Order {
-  orderId: number;
-  customerName: string;
-  status: string;
-  totalAmount: number;
-}
+// interface Order {
+//   orderId: number;
+//   customerName: string;
+//   status: string;
+//   totalAmount: number;
+// }
 
 const Orders: React.FC = () => {
   // const [orders, setOrders] = useState<Order[]>([]);

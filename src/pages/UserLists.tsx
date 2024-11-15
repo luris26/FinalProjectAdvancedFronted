@@ -27,6 +27,7 @@ const UsersList: React.FC = () => {
       }
     };
     getUsers();
+    console.log(loading);
   }, [user]);
 
   const handleDeleteUser = async (userId: number) => {

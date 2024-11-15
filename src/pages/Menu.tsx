@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useAuth } from 'react-oidc-context';
+// import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
+// import { useAuth } from 'react-oidc-context';
 
-interface MenuItem {
-  menuId: number;
-  name: string;
-  description: string;
-  category: string;
-  price: number;
-  availability: boolean;
-}
+// interface MenuItem {
+//   menuId: number;
+//   name: string;
+//   description: string;
+//   category: string;
+//   price: number;
+//   availability: boolean;
+// }
 
 const Menu: React.FC = () => {
   // const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
