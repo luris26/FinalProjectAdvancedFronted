@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { addUser } from '../hooks/userHooks';
+import { addUser } from '../../hooks/userHooks';
 import { useAuth } from 'react-oidc-context';
-import InputField from '../components/InputField';
+import InputField from '../../components/InputField';
 
 const AddUser: React.FC = () => {
   const { user } = useAuth();
@@ -25,7 +25,7 @@ const AddUser: React.FC = () => {
 
   const handleAddUser = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    console.log("llegue hasta aqui");
     if (!formData.name || !formData.email || !formData.role || !formData.password) {
       toast.error('Por favor, llene todos los campos');
       return;
@@ -43,7 +43,7 @@ const AddUser: React.FC = () => {
           name: formData.name,
           email: formData.email,
           role: formData.role,
-          password: formData.password
+          passwordHash: formData.password
         },
         user.id_token
       );

@@ -27,21 +27,21 @@ const Dashboard: React.FC = () => {
           to="/users"
           className="bg-blue-500 hover:bg-blue-600 text-white p-6 rounded-lg text-center"
         >
-          <h3 className="text-xl font-semibold">Manage Users</h3>
+          <h3 className="text-xl font-semibold">Manejo de Usuarios</h3>
         </Link>
 
         <Link
           to="/orders"
           className="bg-customGray hover:bg-green-600 text-white p-6 rounded-lg text-center"
         >
-          <h3 className="text-xl font-semibold">View Orders</h3>
+          <h3 className="text-xl font-semibold">Ver Ordenes</h3>
         </Link>
 
         <Link
           to="/menu"
           className="bg-customPurple hover:bg-purple-600 text-white p-6 rounded-lg text-center"
         >
-          <h3 className="text-xl font-semibold">Manage Menu</h3>
+          <h3 className="text-xl font-semibold">Manejo de Menu</h3>
         </Link>
       </div>
 

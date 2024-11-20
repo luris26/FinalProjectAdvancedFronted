@@ -22,11 +22,11 @@ const Navbar: React.FC = () => {
     <nav className="bg-blue-700 p-4 shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex space-x-6">
-          <Link to="/" className="text-white font-semibold hover:text-blue-200">Dashboard</Link>
+          <Link to="/" className="text-white font-semibold hover:text-blue-200">Opciones</Link>
           {isAuthenticated && (
             <>
-              <Link to="/users" className="text-white hover:text-blue-200">Users</Link>
-              <Link to="/orders" className="text-white hover:text-blue-200">Orders</Link>
+              <Link to="/users" className="text-white hover:text-blue-200">Usuarios</Link>
+              <Link to="/orders" className="text-white hover:text-blue-200">Ordenes</Link>
               <Link to="/menu" className="text-white hover:text-blue-200">Menu</Link>
             </>
           )}

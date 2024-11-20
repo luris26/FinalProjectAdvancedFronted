@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { fetchUsers, updateUser } from '../hooks/userHooks';
-import { useAuth } from 'react-oidc-context';
-import { toast } from 'react-toastify';
-import InputField from '../components/InputField';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchUsers, updateUser } from "../../hooks/userHooks";
+import { useAuth } from "react-oidc-context";
+import { toast } from "react-toastify";
+import InputField from "../../components/InputField";
 
 interface User {
   userId: number;
@@ -18,10 +18,10 @@ const EditUser: React.FC = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    role: '',
-    password: ''
+    name: "",
+    email: "",
+    role: "",
+    password: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -36,11 +36,11 @@ const EditUser: React.FC = () => {
             name: selectedUser.name,
             email: selectedUser.email,
             role: selectedUser.role,
-            password: ''
+            password: "",
           });
         }
       } catch (err) {
-        toast.error('Error al cargar usuario');
+        toast.error("Error al cargar usuario");
       }
     };
     getUser();
@@ -55,12 +55,12 @@ const EditUser: React.FC = () => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.role) {
-      toast.error('Por favor, llene todos los campos');
+      toast.error("Por favor, llene todos los campos");
       return;
     }
 
     if (!user?.id_token) {
-      toast.error('Usuario no autorizado');
+      toast.error("Usuario no autorizado");
       return;
     }
 
@@ -69,17 +69,18 @@ const EditUser: React.FC = () => {
       await updateUser(
         parseInt(userId!),
         {
+          id: parseInt(userId!),
           name: formData.name,
           email: formData.email,
           role: formData.role,
-          password: formData.password || undefined
+          passwordHash: formData.password || undefined,
         },
         user.id_token
       );
-      toast.success('Usuario actualizado correctamente');
-      navigate('/');
+      toast.success("Usuario actualizado correctamente");
+      navigate("/");
     } catch (err) {
-      toast.error('Error al actualizar usuario');
+      toast.error("Error al actualizar usuario");
     } finally {
       setLoading(false);
     }
@@ -124,7 +125,7 @@ const EditUser: React.FC = () => {
           </select>
         </div>
         <InputField
-          label="Contraseña (Opcional)"
+          label="Contraseña"
           type="password"
           name="password"
           value={formData.password}
@@ -133,10 +134,12 @@ const EditUser: React.FC = () => {
         />
         <button
           type="submit"
-          className={`bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition ${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           disabled={loading}
         >
-          {loading ? 'Actualizando...' : 'Actualizar Usuario'}
+          {loading ? "Actualizando..." : "Actualizar Usuario"}
         </button>
       </form>
     </div>
