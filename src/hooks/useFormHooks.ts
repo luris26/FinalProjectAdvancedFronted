@@ -10,7 +10,7 @@ export const useForm = <T extends Record<string, any>>({
   const [formValues, setFormValues] = useState<T>(initialValues);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormValues((prev) => ({

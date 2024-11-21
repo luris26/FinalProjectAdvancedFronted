@@ -5,7 +5,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/NavBar';
 import Dashboard from './pages/Dashboard';
 import UsersList from './pages/user/UserLists';
-import Orders from './pages/Orders';
+import Orders from './pages/order/Orders';
 import Menu from './pages/menu/Menu';
 import Login from './pages/Login';
 import { useAuth } from 'react-oidc-context';
@@ -51,10 +51,22 @@ const App: React.FC = () => {
               <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
               <Route path="/menu" element={<ProtectedRoute><Menu token={''} /></ProtectedRoute>} />
               <Route path="/add-user" element={<ProtectedRoute><AddUser /></ProtectedRoute>} />
-              <Route path="/add-menu-item" element={<AddMenuItemPage token={''} />} />
+              <Route path="/add-menu-item" element={<ProtectedRoute><AddMenuItemPage token={''} /></ProtectedRoute>} />
               <Route path="/edit-user/:userId" element={<ProtectedRoute><EditUser /></ProtectedRoute>} />
-              <Route path="/edit-menu-item/:id" element={<EditMenuItemPage token={''} />} />
+              <Route path="/edit-menu-item/:id" element={<ProtectedRoute><EditMenuItemPage token={''} /></ProtectedRoute>} />
+              <Route path="/edit-user/:userId" element={<ProtectedRoute><EditUser /></ProtectedRoute>} />
             </Routes>
+            {/* <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<><Dashboard /></>} />
+              <Route path="/users" element={<><UsersList /></>} />
+              <Route path="/orders" element={<><Orders /></>} />
+              <Route path="/menu" element={<><Menu token={''} /></>} />
+              <Route path="/add-user" element={<><AddUser /></>} />
+              <Route path="/add-menu-item" element={<><AddMenuItemPage token={''} /></>} />
+              <Route path="/edit-user/:userId" element={<><EditUser /></>} />
+              <Route path="/edit-menu-item/:id" element={<><EditMenuItemPage token={''} /></>} />
+            </Routes> */}
           </div>
         </Router>
       </Providers>

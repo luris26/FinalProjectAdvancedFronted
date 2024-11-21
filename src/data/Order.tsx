@@ -1,6 +1,11 @@
+import { OrderItem } from "./OrderItem";
+
 export interface Order {
-  order_id: number;
+  orderId: number;
+  tableId: number;
+  userId: number;
   status: string;
-  total_amount: number;
-  created_at: string;
+  totalAmount: number;
+  createdAt: string | null;
+  orderItems: OrderItem[];
 }
