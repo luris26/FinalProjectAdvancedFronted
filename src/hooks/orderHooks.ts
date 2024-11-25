@@ -4,7 +4,7 @@ import { NewOrder } from "../data/NewOrder";
 
 const apiClient = axios.create({
   // baseURL: "http://localhost:5073/api/orders",
-  baseURL: 'https://api.final-project-luris.duckdns.org/api/Users',
+  baseURL: 'https://api.final-project-luris.duckdns.org/api/Orders',
   headers: { "Content-Type": "application/json" },
 });
 
