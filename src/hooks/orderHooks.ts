@@ -1,8 +1,10 @@
 import axios from "axios";
 import { Order } from "../data/Order";
+import { NewOrder } from "../data/NewOrder";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:5073/api/orders",
+  // baseURL: "http://localhost:5073/api/orders",
+  baseURL: 'https://api.final-project-luris.duckdns.org/api/Users',
   headers: { "Content-Type": "application/json" },
 });
 
@@ -11,8 +13,8 @@ export const fetchOrders = async (status?: string) => {
   return response.data;
 };
 
-export const createOrder = async (order: Order) => {
-  const response = await apiClient.post("/", order);
+export const createOrder = async (order: NewOrder): Promise<Order> => {
+  const response = await apiClient.post("/addmenu", order);
   return response.data;
 };
 

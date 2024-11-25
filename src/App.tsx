@@ -8,23 +8,15 @@ import UsersList from './pages/user/UserLists';
 import Orders from './pages/order/Orders';
 import Menu from './pages/menu/Menu';
 import Login from './pages/Login';
-import { useAuth } from 'react-oidc-context';
 import AddUser from '../src/pages/user/AddUser';
 import EditUser from '../src/pages/user/EditUser';
 import AddMenuItemPage from './pages/menu/AddMenuItemPage';
 import EditMenuItemPage from './pages/menu/EditMenuItemPage';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import ProtectedRoute from './components/ProtectedRoute';
 
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const auth = useAuth();
 
-  if (auth.isLoading) return <p>Loading...</p>;
-  if (auth.error) return <p>Error: {auth.error.message}</p>;
-  if (!auth.isAuthenticated) return <Navigate to="/login" />;
-
-  return <>{children}</>;
-};
 
 const App: React.FC = () => {
   return (
@@ -48,7 +40,7 @@ const App: React.FC = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
               <Route path="/users" element={<ProtectedRoute><UsersList /></ProtectedRoute>} />
-              <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
+              <Route path="/orders" element={<ProtectedRoute><Orders token={''} /></ProtectedRoute>} />
               <Route path="/menu" element={<ProtectedRoute><Menu token={''} /></ProtectedRoute>} />
               <Route path="/add-user" element={<ProtectedRoute><AddUser /></ProtectedRoute>} />
               <Route path="/add-menu-item" element={<ProtectedRoute><AddMenuItemPage token={''} /></ProtectedRoute>} />
@@ -56,17 +48,6 @@ const App: React.FC = () => {
               <Route path="/edit-menu-item/:id" element={<ProtectedRoute><EditMenuItemPage token={''} /></ProtectedRoute>} />
               <Route path="/edit-user/:userId" element={<ProtectedRoute><EditUser /></ProtectedRoute>} />
             </Routes>
-            {/* <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/" element={<><Dashboard /></>} />
-              <Route path="/users" element={<><UsersList /></>} />
-              <Route path="/orders" element={<><Orders /></>} />
-              <Route path="/menu" element={<><Menu token={''} /></>} />
-              <Route path="/add-user" element={<><AddUser /></>} />
-              <Route path="/add-menu-item" element={<><AddMenuItemPage token={''} /></>} />
-              <Route path="/edit-user/:userId" element={<><EditUser /></>} />
-              <Route path="/edit-menu-item/:id" element={<><EditMenuItemPage token={''} /></>} />
-            </Routes> */}
           </div>
         </Router>
       </Providers>

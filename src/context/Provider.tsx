@@ -2,9 +2,8 @@
 
 import { AuthProvider, AuthProviderProps } from "react-oidc-context";
 
-//https://auth.snowse.duckdns.org/realms/advanced-frontend/.well-known/openid-configuration
 const oldConfig: AuthProviderProps = {
-    authority: "https://auth.snowse.duckdns.org/realms/advanced-frontend/", //a ver porque que mo pushea
+    authority: "https://auth.snowse.duckdns.org/realms/advanced-frontend/",
     client_id: "luris-client",
     // redirect_uri: "http://localhost:5173/",
     redirect_uri: "https://final-project-luris.duckdns.org/",

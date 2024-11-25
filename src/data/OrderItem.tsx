@@ -1,6 +1,6 @@
 export interface OrderItem {
     menu_id: number;
-    menuName: string;
+    menuName?: string;
     quantity: number;
     price: number;
   }
