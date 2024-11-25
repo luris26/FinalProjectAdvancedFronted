@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Providers from './context/Provider';
 import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/NavBar';
@@ -27,7 +27,7 @@ const App: React.FC = () => {
           <div className="container mx-auto p-6">
             <ToastContainer
               position="top-right"
-              autoClose={3000} 
+              autoClose={3000}
               hideProgressBar={false}
               newestOnTop={false}
               closeOnClick
@@ -40,7 +40,7 @@ const App: React.FC = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
               <Route path="/users" element={<ProtectedRoute><UsersList /></ProtectedRoute>} />
-              <Route path="/orders" element={<ProtectedRoute><Orders token={''} /></ProtectedRoute>} />
+              <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
               <Route path="/menu" element={<ProtectedRoute><Menu token={''} /></ProtectedRoute>} />
               <Route path="/add-user" element={<ProtectedRoute><AddUser /></ProtectedRoute>} />
               <Route path="/add-menu-item" element={<ProtectedRoute><AddMenuItemPage token={''} /></ProtectedRoute>} />
