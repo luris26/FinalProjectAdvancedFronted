@@ -2,6 +2,7 @@ import { OrderItem } from "./OrderItem";
 
 export class NewOrder {
   tableId: number;
+  userId: number; 
   orderItems: OrderItem[];
   status: string;
   createdAt: string;
@@ -9,10 +10,12 @@ export class NewOrder {
 
   constructor(
     tableId: number,
+    userId: number,
     orderItems: OrderItem[],
     status: string = "pendiente"
   ) {
     this.tableId = tableId;
+    this.userId = userId;
     this.orderItems = orderItems;
     this.status = status;
     this.createdAt = new Date().toISOString();

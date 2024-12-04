@@ -131,6 +131,7 @@ const EditUser: React.FC = () => {
           value={formData.password}
           onChange={handleChange}
           placeholder="Nueva Contraseña"
+          required
         />
         <button
           type="submit"

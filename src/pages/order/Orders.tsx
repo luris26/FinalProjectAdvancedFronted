@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Order } from "../../data/Order";
 import { Menu } from "../../data/Menu";
-import { fetchOrders, markOrderAsCompleted } from "../../hooks/orderHooks";
+import { fetchOrders, markOrderAsCompleted, createOrder } from "../../hooks/orderHooks";
 import { fetchMenuItems } from "../../hooks/menuHooks";
 import OrderCard from "./OrderCard";
 import OrderModal from "./OrderModal";
+import { OrderItem } from "../../data/OrderItem";
+import { NewOrder } from "../../data/NewOrder";
 
 const OrdersPage: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -64,10 +66,18 @@ const OrdersPage: React.FC = () => {
     setIsModalOpen(false);
   };
 
-  const handleCreateOrder = (tableId: number, orderItems: any[]) => {
-    console.log("Creating order with", { tableId, orderItems });
-    setIsModalOpen(false);
+  const handleCreateOrder = async (tableId: number, orderItems: OrderItem[], userId:number) => {
+    try {
+      const newOrder = new NewOrder(tableId, userId, orderItems);
+      await createOrder(newOrder);
+      console.log("Orden creada:", newOrder);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error creando la orden:", error);
+      setError("No se pudo crear la orden.");
+    }
   };
+  
 
   return (
     <div className="p-6 max-w-7xl mx-auto relative">

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { fetchMenuItems, updateMenuItem } from "../../hooks/menuHooks";
 import { toast } from "react-toastify";
 import InputField from "../../components/InputField";
+import { useAuth } from "react-oidc-context";
 
 interface EditMenuItemProps {
   token: string;
@@ -10,6 +11,7 @@ interface EditMenuItemProps {
 
 const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
   const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -24,7 +26,7 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
 
   useEffect(() => {
     const getMenuItem = async () => {
-      if (!token || !id) return;
+      if (!user || !id) return;
       try {
         const menuItems = await fetchMenuItems(token);
         const selectedItem = menuItems.find((item: any) => item.menuId === parseInt(id));
@@ -54,12 +56,7 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
     e.preventDefault();
 
     if (!formData.name || !formData.description || !formData.category || formData.price <= 0) {
-      toast.error("Please fill all fields correctly.");
-      return;
-    }
-
-    if (!token) {
-      toast.error("Unauthorized access.");
+      toast.error("Porfavor llene todos los campos");
       return;
     }
 
@@ -155,3 +152,4 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
 };
 
 export default EditMenuItemPage;
+

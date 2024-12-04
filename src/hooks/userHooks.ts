@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  // baseURL: "http://localhost:5073/api/Users",
-  baseURL: 'https://api.final-project-luris.duckdns.org/api/Users',
+  baseURL: "http://localhost:5073/api/Users",
+  // baseURL: 'https://api.final-project-luris.duckdns.org/api/Users',
   headers: {
     "Content-Type": "application/json",
   },
@@ -64,6 +64,7 @@ export const updateUser = async (
 ) => {
   try {
     const { id, ...userWithoutId } = updatedUser;
+    id: id
     const response = await apiClient.put(`edit/${userId}`, userWithoutId, {
       headers: {
         Authorization: `Bearer ${token}`,

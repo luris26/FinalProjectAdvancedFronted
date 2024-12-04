@@ -3,11 +3,12 @@ import { Menu } from "../../data/Menu";
 
 interface OrderModalProps {
   onClose: () => void;
-  onCreateOrder: (tableId: number, orderItems: any[]) => void;
+  onCreateOrder: (tableId: number, orderItems: any, userId:number) => void;
   menuItems: Menu[]; 
 }
 
 const OrderModal: React.FC<OrderModalProps> = ({ onClose, onCreateOrder, menuItems }) => {
+  const [userId] = useState<number>(1);
   const [tableId, setTableId] = useState<number | null>(null);
   const [orderItems, setOrderItems] = useState<any[]>([]);
   console.log(menuItems)
@@ -32,7 +33,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ onClose, onCreateOrder, menuIte
           price: menuItem?.price || 0,
         };
       });
-      onCreateOrder(tableId, populatedItems);
+      onCreateOrder(tableId, populatedItems, userId);
     } else {
       alert("Por favor, selecciona una mesa y agrega al menos un artículo.");
     }

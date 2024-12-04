@@ -1,5 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import Card from "../../layout/CardLayout"; // Adjust the import path based on your file structure
 
 interface MenuListItemProps {
   item: {
@@ -16,35 +16,35 @@ const MenuListItem: React.FC<MenuListItemProps> = ({ item, onDelete }) => {
   const navigate = useNavigate();
 
   return (
-    <li
-      className="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border rounded-lg shadow-md hover:bg-gray-50 transition"
+    <Card
+      title={item.name}
+      subtitle={`Category: ${item.category || "Uncategorized"}`}
     >
-      <div className="mb-4 md:mb-0">
-        <h2 className="font-semibold text-xl">{item.name}</h2>
-        <p className="text-gray-700">Category: {item.category}</p>
-        <p className="text-sm text-gray-500">Price: ${item.price}</p>
-        <p
-          className={`text-sm font-medium ${item.availability ? "text-green-500" : "text-red-500"}`}
-        >
-          {item.availability ? "Available" : "Not Available"}
-        </p>
-      </div>
-      <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start md:items-center">
+      <p className="text-gray-600">Price: ${item.price.toFixed(2)}</p>
+      <p
+        className={`text-sm font-medium ${
+          item.availability ? "text-green-600" : "text-red-600"
+        }`}
+      >
+        {item.availability ? "Available" : "Not Available"}
+      </p>
+      <div className="mt-4 flex justify-between">
         <button
           onClick={() => navigate(`/edit-menu-item/${item.menuId}`)}
-          className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
         >
-          Editar
+          Edit
         </button>
         <button
           onClick={() => onDelete(item.menuId)}
-          className="w-full md:w-auto px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 transition"
         >
-          Eliminar
+          Delete
         </button>
       </div>
-    </li>
+    </Card>
   );
 };
 
 export default MenuListItem;
+

@@ -4,6 +4,7 @@ import { useAuth } from 'react-oidc-context';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../pages/menu/Button';
+import Card from '../../layout/CardLayout';
 
 interface User {
   userId: number;
@@ -75,17 +76,10 @@ const UsersList: React.FC = () => {
         <p className="text-center text-gray-500">No hay usuarios disponibles.</p>
       )}
 
-      <ul className="space-y-4">
+      <div className="space-y-4"> {/* Cambiamos de grid a espacio entre las tarjetas */}
         {users.map((user) => (
-          <li
-            key={user.userId}
-            className="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border rounded-lg shadow-md hover:bg-gray-50 transition"
-          >
-            <div className="mb-4 md:mb-0">
-              <h2 className="font-semibold text-xl">{user.name}</h2>
-              <p className="text-sm text-gray-500">{user.email}</p>
-            </div>
-            <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start md:items-center">
+          <Card key={user.userId} title={user.name} subtitle={user.email}>
+            <div className="flex justify-end gap-2">
               <Button
                 onClick={() => handleEditUser(user.userId)}
                 className="bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-400"
@@ -99,9 +93,9 @@ const UsersList: React.FC = () => {
                 Eliminar
               </Button>
             </div>
-          </li>
+          </Card>
         ))}
-      </ul>
+      </div>
     </section>
   );
 };
