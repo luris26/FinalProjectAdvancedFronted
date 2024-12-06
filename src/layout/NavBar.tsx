@@ -16,6 +16,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   const handleLogout = async () => {
+    isAuthenticated
     await auth.removeUser();
     localStorage.clear();
     sessionStorage.clear();
