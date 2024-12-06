@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Providers from './context/Provider';
 import ErrorBoundary from './errorBoundary/ErrorBoundary';
 import Navbar from './layout/NavBar';
-import Dashboard from './pages/Dashboard';
+import Profile from './pages/Dashboard';
 import UsersList from './pages/user/UserLists';
 import Orders from './pages/order/Orders';
 import Menu from './pages/menu/Menu';
@@ -18,8 +18,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PromotionConfigurator from './pages/promotion/PromotionConfigurator';
 import ClipboardExample from './pages/extraAPI/ClipBoard';
 import MainLayout from './layout/MainLayout';
-
-
 
 const App: React.FC = () => {
   return (
@@ -42,7 +40,7 @@ const App: React.FC = () => {
               />
               <Routes>
                 <Route path="/login" element={<Login />} />
-                <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                <Route path="/" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                 <Route path="/users" element={<ProtectedRoute><UsersList /></ProtectedRoute>} />
                 <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
                 <Route path="/menu" element={<ProtectedRoute><Menu token={''} /></ProtectedRoute>} />

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Card from "../../layout/CardLayout"; // Adjust the import path based on your file structure
+import Card from "../../layout/CardLayout";
 
 interface MenuListItemProps {
   item: {
@@ -17,9 +17,14 @@ const MenuListItem: React.FC<MenuListItemProps> = ({ item, onDelete }) => {
 
   return (
     <Card
-      title={item.name}
-      subtitle={`Category: ${item.category || "Uncategorized"}`}
+      name={item.name}
+      email={`Category: ${item.category || "Uncategorized"}`}
     >
+      <img
+          src="/food.svg" 
+          alt="Verification"
+          className="w-32 h-32 mx-auto"
+        />
       <p className="text-gray-600">Price: ${item.price.toFixed(2)}</p>
       <p
         className={`text-sm font-medium ${
@@ -31,15 +36,15 @@ const MenuListItem: React.FC<MenuListItemProps> = ({ item, onDelete }) => {
       <div className="mt-4 flex justify-between">
         <button
           onClick={() => navigate(`/edit-menu-item/${item.menuId}`)}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+          className="bg-Tan text-white px-4 py-2 rounded hover:bg-TanComplementary"
         >
-          Edit
+          Editar
         </button>
         <button
           onClick={() => onDelete(item.menuId)}
-          className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 transition"
+          className="bg-ChestnutRose text-white px-4 py-2 rounded hover:bg-ChestnutRoseComplement transition"
         >
-          Delete
+          Eliminar
         </button>
       </div>
     </Card>

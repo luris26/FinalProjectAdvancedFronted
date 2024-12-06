@@ -139,7 +139,7 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
         </div>
         <button
           type="submit"
-          className={`bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition ${
+          className={`bg-Tan text-white py-2 px-4 rounded hover:bg-TanComplementary transition ${
             loading ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={loading}

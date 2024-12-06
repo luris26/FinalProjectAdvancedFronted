@@ -1,76 +1,25 @@
-// import React, { useEffect, useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import { useAuth } from 'react-oidc-context';
-
-// const Navbar: React.FC = () => {
-//   const auth = useAuth();
-//   const navigate = useNavigate();
-//   const [isAuthenticated, setIsAuthenticated] = useState(auth.isAuthenticated);
-
-//   const handleLogout = async () => {
-//     await auth.removeUser();
-//     localStorage.clear();
-//     sessionStorage.clear();
-//     navigate('/login', { replace: true });
-//   };
-
-//   useEffect(() => {
-//     setIsAuthenticated(auth.isAuthenticated);
-//   }, [auth.isAuthenticated]);
-
-//   return (
-//     <nav className="bg-blue-700 p-4 shadow-lg">
-//       <div className="max-w-7xl mx-auto flex justify-between items-center">
-//         <div className="flex space-x-6">
-//           <Link to="/" className="text-white font-semibold hover:text-blue-200">Opciones</Link>
-//           {isAuthenticated && (
-//             <>
-//               <Link to="/users" className="text-white hover:text-blue-200">Usuarios</Link>
-//               <Link to="/orders" className="text-white hover:text-blue-200">Ordenes</Link>
-//               <Link to="/menu" className="text-white hover:text-blue-200">Menu</Link>
-//               <Link to="/promotion" className="text-white hover:text-blue-200">Promociones</Link>
-//             </>
-//           )}
-//         </div>
-
-//         <div className="flex items-center">
-//           {isAuthenticated ? (
-//             <button
-//               onClick={handleLogout}
-//               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-//             >
-//               Log out
-//             </button>
-//           ) : (
-//             <button
-//               onClick={() => void auth.signinRedirect()}
-//               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-//             >
-//               Log in
-//             </button>
-//           )}
-//         </div>
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from 'react-oidc-context';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "react-oidc-context";
 
 const Navbar: React.FC = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(auth.isAuthenticated);
-  const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar el menú en mobile
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleLogout = async () => {
     await auth.removeUser();
     localStorage.clear();
     sessionStorage.clear();
-    navigate('/login', { replace: true });
+    navigate("/login", { replace: true });
   };
 
   useEffect(() => {
@@ -78,77 +27,73 @@ const Navbar: React.FC = () => {
   }, [auth.isAuthenticated]);
 
   return (
-    <nav className="bg-blue-700 p-4 shadow-lg">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo y botón de menú */}
-        <div className="flex items-center justify-between w-full md:w-auto">
-          <Link to="/" className="text-white text-lg font-semibold">
-            Opciones
-          </Link>
-          <button
-            className="text-white md:hidden"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {/* Icono de menú */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6"
+    <nav
+      className={`bg-Kabul p-4 shadow-lg ${isMobile ? "fixed bottom-0 left-0 w-full" : ""
+        }`}
+    >
+      <div
+        className={`max-w-7xl mx-auto flex ${isMobile ? "justify-around items-center" : "justify-between items-center"
+          }`}
+      >
+        {/* móviles */}
+        {isMobile ? (
+          <>
+            <Link to="/" className="text-white flex flex-col items-center">
+              <i className="bi bi-house-fill text-xl"></i>
+              <span className="text-sm">Perfil</span>
+            </Link>
+            <Link to="/users" className="text-white flex flex-col items-center">
+              <i className="bi bi-people-fill text-xl"></i>
+              <span className="text-sm">Usuarios</span>
+            </Link>
+            <Link to="/orders" className="text-white flex flex-col items-center">
+              <i className="bi bi-list-task text-xl"></i>
+              <span className="text-sm">Órdenes</span>
+            </Link>
+            <Link to="/menu" className="text-white flex flex-col items-center">
+              <i className="bi bi-grid-fill text-xl"></i>
+              <span className="text-sm">Menú</span>
+            </Link>
+            <Link to="/promotion" className="text-white flex flex-col items-center">
+              <i className="bi bi-grid-fill text-xl"></i>
+              <span className="text-sm">Promociones</span>
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="bg-ChestnutRose text-white px-4 py-2 rounded hover:bg-ChestnutRoseComplement transition"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </button>
-        </div>
-
-        {/* Links de navegación */}
-        <div
-          className={`${
-            menuOpen ? 'block' : 'hidden'
-          } md:flex md:items-center md:space-x-6 w-full md:w-auto`}
-        >
-          {isAuthenticated && (
-            <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-              <Link to="/users" className="text-white hover:text-blue-200">
+              Log out
+            </button>
+          </>
+        ) : (
+          // escritorio
+          <>
+            <div className="flex items-center">
+              <Link to="/" className="text-white text-lg font-semibold mr-6">
+                Perfil
+              </Link>
+              <Link to="/users" className="text-white hover:text-blue-200 mr-6">
                 Usuarios
               </Link>
-              <Link to="/orders" className="text-white hover:text-blue-200">
-                Ordenes
+              <Link to="/orders" className="text-white hover:text-blue-200 mr-6">
+                Órdenes
               </Link>
               <Link to="/menu" className="text-white hover:text-blue-200">
-                Menu
+                Menú
               </Link>
-              <Link to="/promotion" className="text-white hover:text-blue-200">
-                Promociones
-              </Link>
+              <Link to="/promotion" className="text-white flex flex-col items-center">
+              <i className="bi bi-grid-fill text-xl"></i>
+              <span className="text-sm">Promociones</span>
+            </Link>
             </div>
-          )}
-
-          {/* Botón de login/logout */}
-          <div className="mt-4 md:mt-0 flex justify-center md:justify-end">
-            {isAuthenticated ? (
-              <button
-                onClick={handleLogout}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-              >
-                Log out
-              </button>
-            ) : (
-              <button
-                onClick={() => void auth.signinRedirect()}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-              >
-                Log in
-              </button>
-            )}
-          </div>
-        </div>
+            <button
+              onClick={handleLogout}
+              className="bg-ChestnutRose text-white px-4 py-2 rounded hover:bg-ChestnutRoseComplement transition"
+            >
+              Log out
+            </button>
+          </>
+        )}
       </div>
     </nav>
   );

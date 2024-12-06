@@ -135,9 +135,8 @@ const EditUser: React.FC = () => {
         />
         <button
           type="submit"
-          className={`bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition ${
-            loading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className={`bg-GreenOlive text-white py-2 px-4 rounded hover:bg-GreenOliveComple transition ${loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           disabled={loading}
         >
           {loading ? "Actualizando..." : "Actualizar Usuario"}

@@ -8,7 +8,7 @@ interface OrderCardProps {
 
 const OrderCard: React.FC<OrderCardProps> = ({ order, onComplete }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 relative">
+    <div className="bg-white rounded-lg shadow-md p-4">
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-bold text-lg">Mesa {order.tableId || "N/A"}</h2>
         <span className="text-gray-500 text-sm">
@@ -20,6 +20,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onComplete }) => {
             : "Just now"}
         </span>
       </div>
+
       <ul className="text-gray-700 text-sm mb-4">
         {order.orderItems && order.orderItems.length > 0 ? (
           order.orderItems.map((item, index) => (
@@ -34,6 +35,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onComplete }) => {
           <li className="text-gray-500">No hay artículos en esta orden</li>
         )}
       </ul>
+
       <div className="flex justify-between items-center mb-4">
         <span
           className={`text-sm font-medium ${
@@ -48,9 +50,14 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onComplete }) => {
         </span>
         <span className="font-bold text-lg">${order.totalAmount.toFixed(2)}</span>
       </div>
+
       <button
         onClick={() => onComplete(order.orderId)}
-        className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+        className={`w-full py-2 rounded-lg ${
+          order.status === "completado"
+            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+            : "bg-Tan text-white hover:bg-TanComplementary transition"
+        }`}
         disabled={order.status === "completado"}
       >
         {order.status === "completado" ? "Completado" : "Marcar como completado"}

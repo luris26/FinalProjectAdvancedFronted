@@ -25,13 +25,24 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto mt-20">
-      <h2 className="text-2xl font-semibold mb-6">Sign In</h2>
+    <div className="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto mt-20 text-center">
+      <div className="mb-6">
+        <img
+          src="/login.svg" 
+          alt="Verification"
+          className="w-32 h-32 mx-auto"
+        />
+      </div>
+
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        Porfavor usa el boton para verificar tu identidad
+      </h2>
+
       <button
         onClick={handleLogin}
-        className="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition"
+        className="bg-ChestnutRose text-white font-semibold py-2 px-6 rounded-lg hover:bg-ChestnutRoseComplement transition shadow-md"
       >
-        Log in with OIDC
+        Verificar Identidad
       </button>
     </div>
   );

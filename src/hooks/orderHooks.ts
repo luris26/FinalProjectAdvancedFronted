@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Order } from "../data/Order";
-import { NewOrder } from "../data/NewOrder";
+import { NewOrder } from "../data/OrderItem";
 
 const apiClient = axios.create({
   // baseURL: "http://localhost:5073/api/orders",
@@ -13,11 +13,6 @@ export const fetchOrders = async (status?: string) => {
   return response.data;
 };
 
-export const createOrder = async (order: NewOrder): Promise<Order> => {
-  const response = await apiClient.post("/addmenu", order);
-  return response.data;
-};
-
 export const updateOrder = async (id: number, order: Partial<Order>) => {
   const response = await apiClient.put(`/${id}`, order);
   return response.data;
@@ -25,5 +20,10 @@ export const updateOrder = async (id: number, order: Partial<Order>) => {
 
 export const markOrderAsCompleted = async (id: number) => {
   const response = await apiClient.put(`/complete/${id}`);
+  return response.data;
+};
+
+export const createOrder = async (order: NewOrder): Promise<NewOrder> => {
+  const response = await apiClient.post<NewOrder>("/addmenu", order);
   return response.data;
 };

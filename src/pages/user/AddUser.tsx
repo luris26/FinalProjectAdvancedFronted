@@ -48,7 +48,7 @@ const AddUser: React.FC = () => {
         user.id_token
       );
       toast.success('Usuario añadido correctamente');
-      navigate('/'); 
+      navigate('/');
     } catch (err) {
       toast.error('Error al añadir usuario');
     } finally {
@@ -105,7 +105,7 @@ const AddUser: React.FC = () => {
         />
         <button
           type="submit"
-          className={`bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`bg-GreenOlive text-white py-2 px-4 rounded hover:bg-GreenOlive transition mx-auto block ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={loading}
         >
           {loading ? 'Añadiendo...' : 'Añadir Usuario'}

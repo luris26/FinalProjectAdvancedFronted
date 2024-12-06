@@ -55,7 +55,7 @@ const MenuPage: React.FC<MenuPageProps> = ({ token }) => {
       <div className="flex justify-center mb-6">
         <Button
           onClick={() => navigate("/add-menu-item")}
-          className="bg-green-600 text-white shadow-lg hover:bg-green-700 focus:ring-green-500"
+          className="bg-GreenOlive text-white shadow-lg focus:ring-green-500"
         >
           Añadir un Nuevo Plato
         </Button>

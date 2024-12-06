@@ -1,48 +1,65 @@
 import React, { useState } from "react";
 import { Menu } from "../../data/Menu";
+import { NewOrder, OrderItem } from "../../data/OrderItem";
 
 interface OrderModalProps {
   onClose: () => void;
-  onCreateOrder: (tableId: number, orderItems: any, userId:number) => void;
-  menuItems: Menu[]; 
+  onCreateOrder: (newOrder: NewOrder) => void;
+  menuItems: Menu[];
 }
 
-const OrderModal: React.FC<OrderModalProps> = ({ onClose, onCreateOrder, menuItems }) => {
+const OrderModal: React.FC<OrderModalProps> = ({
+  onClose,
+  onCreateOrder,
+  menuItems,
+}) => {
   const [userId] = useState<number>(1);
   const [tableId, setTableId] = useState<number | null>(null);
-  const [orderItems, setOrderItems] = useState<any[]>([]);
-  console.log(menuItems)
+  const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const handleAddItem = () => {
-    setOrderItems([...orderItems, { menuId: "", quantity: 1 }]);
+    setOrderItems([...orderItems, { menuId: 0, quantity: 1, price: 0, menuName: "" }]);
   };
 
-  const handleItemChange = (index: number, field: string, value: any) => {
+  const handleItemChange = (index: number, field: keyof OrderItem, value: any) => {
     const updatedItems = [...orderItems];
-    updatedItems[index][field] = value;
+    updatedItems[index] = {
+      ...updatedItems[index],
+      [field]: value,
+    };
+    if (field === "menuId") {
+      const menuItem = menuItems.find((menu) => menu.menuId === Number(value));
+      if (menuItem) {
+        updatedItems[index].menuName = menuItem.name;
+        updatedItems[index].price = menuItem.price;
+      }
+    }
     setOrderItems(updatedItems);
   };
 
   const handleSubmit = () => {
-    if (tableId && orderItems.length > 0) {
-      const populatedItems = orderItems.map((item) => {
-        const menuItem = menuItems.find((menu) => menu.menuId === Number(item.menuId));
-        return {
-          menuName: menuItem?.name || "",
-          quantity: item.quantity,
-          price: menuItem?.price || 0,
-        };
-      });
-      onCreateOrder(tableId, populatedItems, userId);
-    } else {
-      alert("Por favor, selecciona una mesa y agrega al menos un artículo.");
+    if (!tableId || orderItems.length === 0) {
+      setError("Por favor, selecciona una mesa y agrega al menos un artículo.");
+      return;
     }
+
+    const newOrder: NewOrder = {
+      tableId,
+      userId,
+      status: "pendiente",
+      totalAmount: orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+      orderItems,
+    };
+
+    onCreateOrder(newOrder);
   };
 
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
       <div className="bg-white p-6 rounded-lg shadow-md w-96">
         <h2 className="text-xl font-bold mb-4">Nueva Orden</h2>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <label className="block mb-2">
           Mesa:
           <input
@@ -50,13 +67,14 @@ const OrderModal: React.FC<OrderModalProps> = ({ onClose, onCreateOrder, menuIte
             value={tableId || ""}
             onChange={(e) => setTableId(Number(e.target.value))}
             className="block w-full border rounded-md p-2"
+            placeholder="Número de mesa"
           />
         </label>
         <div>
           {orderItems.map((item, index) => (
             <div key={index} className="flex items-center gap-2 mb-2">
               <select
-                value={item.menuId}
+                value={item.menuId || ""}
                 onChange={(e) =>
                   handleItemChange(index, "menuId", Number(e.target.value))
                 }
@@ -74,7 +92,8 @@ const OrderModal: React.FC<OrderModalProps> = ({ onClose, onCreateOrder, menuIte
               <input
                 type="number"
                 placeholder="Cantidad"
-                value={item.quantity}
+                value={item.quantity || 1}
+                min={1}
                 onChange={(e) =>
                   handleItemChange(index, "quantity", Number(e.target.value))
                 }
