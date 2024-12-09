@@ -13,6 +13,8 @@ export default [
     "@typescript-eslint/no-unused-expressions": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-this-alias":"off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "no-unused-disable-directive": "off"
   }}
 ];
