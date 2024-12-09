@@ -4,7 +4,7 @@ interface UseFormProps<T> {
   initialValues: T;
 }
 
-export const useForm = <T extends Record<string, any>>({
+export const useForm = <T extends Record<string, T>>({
   initialValues,
 }: UseFormProps<T>) => {
   const [formValues, setFormValues] = useState<T>(initialValues);

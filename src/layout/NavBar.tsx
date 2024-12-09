@@ -15,8 +15,10 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  if (isAuthenticated) {
+    console.log("is auth");
+  }
   const handleLogout = async () => {
-    isAuthenticated
     await auth.removeUser();
     localStorage.clear();
     sessionStorage.clear();
@@ -83,9 +85,9 @@ const Navbar: React.FC = () => {
                 Menú
               </Link>
               <Link to="/promotion" className="text-white flex flex-col items-center">
-              <i className="bi bi-grid-fill text-xl"></i>
-              <span className="text-sm">Promociones</span>
-            </Link>
+                <i className="bi bi-grid-fill text-xl"></i>
+                <span className="text-sm">Promociones</span>
+              </Link>
             </div>
             <button
               onClick={handleLogout}

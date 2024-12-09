@@ -24,7 +24,7 @@ const MenuPage: React.FC<MenuPageProps> = ({ token }) => {
         const data = await fetchMenuItems(token);
         setMenuItems(data);
       } catch (err) {
-        setError("Error fetching menu items");
+        setError("Error fetching menu items" + err);
       } finally {
         setLoading(false);
       }
@@ -42,7 +42,7 @@ const MenuPage: React.FC<MenuPageProps> = ({ token }) => {
       );
       toast.success("Plato eliminado correctament");
     } catch (err) {
-      toast.error("Error al tratar de eliminar");
+      toast.error("Error al tratar de eliminar" + err);
     } finally {
       setLoading(false);
     }

@@ -26,7 +26,7 @@ const UsersList: React.FC = () => {
         const data = await fetchUsers(user.id_token);
         setUsers(data);
       } catch (err) {
-        toast.error('Error al cargar los usuarios');
+        toast.error('Error al cargar los usuarios' + err);
       } finally {
         setLoading(false);
       }
@@ -43,7 +43,7 @@ const UsersList: React.FC = () => {
       setUsers(users.filter((u) => u.userId !== userId));
       toast.success('Usuario eliminado correctamente');
     } catch (err) {
-      toast.error('Error al eliminar usuario');
+      toast.error('Error al eliminar usuario' + err);
     } finally {
       setLoading(false);
     }

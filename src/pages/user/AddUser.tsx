@@ -50,7 +50,7 @@ const AddUser: React.FC = () => {
       toast.success('Usuario añadido correctamente');
       navigate('/');
     } catch (err) {
-      toast.error('Error al añadir usuario');
+      toast.error('Error al añadir usuario' + err);
     } finally {
       setLoading(false);
     }

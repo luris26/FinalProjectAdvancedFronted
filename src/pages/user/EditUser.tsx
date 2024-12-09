@@ -40,7 +40,7 @@ const EditUser: React.FC = () => {
           });
         }
       } catch (err) {
-        toast.error("Error al cargar usuario");
+        toast.error("Error al cargar usuario" +  err);
       }
     };
     getUser();
@@ -80,7 +80,7 @@ const EditUser: React.FC = () => {
       toast.success("Usuario actualizado correctamente");
       navigate("/");
     } catch (err) {
-      toast.error("Error al actualizar usuario");
+      toast.error("Error al actualizar usuario" + err);
     } finally {
       setLoading(false);
     }

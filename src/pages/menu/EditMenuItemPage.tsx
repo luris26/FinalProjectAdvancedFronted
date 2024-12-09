@@ -4,6 +4,7 @@ import { fetchMenuItems, updateMenuItem } from "../../hooks/menuHooks";
 import { toast } from "react-toastify";
 import InputField from "../../components/InputField";
 import { useAuth } from "react-oidc-context";
+import { OrderItem } from "../../data/OrderItem";
 
 interface EditMenuItemProps {
   token: string;
@@ -29,7 +30,7 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
       if (!user || !id) return;
       try {
         const menuItems = await fetchMenuItems(token);
-        const selectedItem = menuItems.find((item: any) => item.menuId === parseInt(id));
+        const selectedItem = menuItems.find((item: OrderItem) => item.menuId === parseInt(id));
         if (selectedItem) {
           setFormData({
             name: selectedItem.name,
@@ -40,7 +41,7 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
           });
         }
       } catch (err) {
-        toast.error("Error loading menu item");
+        toast.error("Error loading menu item" + err);
       }
     };
 
@@ -66,7 +67,7 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
       toast.success("Menu item updated successfully");
       navigate("/menu");
     } catch (err) {
-      toast.error("Error updating menu item");
+      toast.error("Error updating menu item" + err);
     } finally {
       setLoading(false);
     }

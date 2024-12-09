@@ -9,4 +9,9 @@ export default [
   {languageOptions: { globals: globals.browser }},
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {rules: {
+    "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-this-alias":"off"
+  }}
 ];

@@ -1,4 +1,4 @@
-import { calculateTotal } from '../utils/calculateTotal'; // Ajusta la ruta
+import { calculateTotal } from '../utils/calculateTotal';
 
 describe('calculateTotal', () => {
   it('debería calcular correctamente el total de precios', () => {
@@ -11,7 +11,7 @@ describe('calculateTotal', () => {
   });
 
   it('debería devolver 0 si no hay ítems', () => {
-    const items: any[] = [];
+    const items: [] = [];
     const result = calculateTotal(items);
     expect(result).toBe(0);
   });

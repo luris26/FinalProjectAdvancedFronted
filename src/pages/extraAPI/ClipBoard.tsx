@@ -8,7 +8,7 @@ const ClipboardExample: React.FC = () => {
       await navigator.clipboard.writeText(text);
       alert('Texto copiado al portapapeles');
     } catch (err) {
-      alert('Error al copiar el texto');
+      alert('Error al copiar el texto' + err);
     }
   };
 

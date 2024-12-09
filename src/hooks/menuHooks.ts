@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  // baseURL: "http://localhost:5073/api/menu",
-  baseURL: "https://api.final-project-luris.duckdns.org/api/Menu",
+  baseURL: "http://localhost:5073/api/menu",
+  // baseURL: "https://api.final-project-luris.duckdns.org/api/Menu",
   headers: {
     "Content-Type": "application/json",
   },
@@ -56,10 +56,9 @@ export const updateMenuItem = async (
     });
 
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
     console.error(
       "Error updating menu item:",
-      error.response?.data || error.message
     );
     throw error;
   }

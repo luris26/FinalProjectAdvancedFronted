@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  // baseURL: "http://localhost:5073/api/Users",
-  baseURL: 'https://api.final-project-luris.duckdns.org/api/Users',
+  baseURL: "http://localhost:5073/api/Users",
+  // baseURL: 'https://api.final-project-luris.duckdns.org/api/Users',
   headers: {
     "Content-Type": "application/json",
   },
@@ -42,10 +42,9 @@ export const addUser = async (
       },
     });
     return response.data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(
       "Error al añadir usuario:",
-      error.response?.data || error.message
     );
     throw error;
   }
@@ -63,8 +62,7 @@ export const updateUser = async (
   token: string
 ) => {
   try {
-    const { id, ...userWithoutId } = updatedUser;
-    id: id
+    const {...userWithoutId } = updatedUser;
     const response = await apiClient.put(`edit/${userId}`, userWithoutId, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -72,10 +70,9 @@ export const updateUser = async (
       },
     });
     return response.data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(
       "Error al actualizar usuario:",
-      error.response?.data || error.message
     );
     throw error;
   }

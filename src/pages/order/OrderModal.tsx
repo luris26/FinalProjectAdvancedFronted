@@ -22,7 +22,7 @@ const OrderModal: React.FC<OrderModalProps> = ({
     setOrderItems([...orderItems, { menuId: 0, quantity: 1, price: 0, menuName: "" }]);
   };
 
-  const handleItemChange = (index: number, field: keyof OrderItem, value: any) => {
+  const handleItemChange = (index: number, field: keyof OrderItem, value: number) => {
     const updatedItems = [...orderItems];
     updatedItems[index] = {
       ...updatedItems[index],

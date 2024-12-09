@@ -29,7 +29,7 @@ const AddMenuItemPage: React.FC<AddMenuItemPageProps> = ({ token }) => {
       toast.success("Menu item added successfully!");
       navigate("/menu");
     } catch (err) {
-      toast.error("Failed to add menu item");
+      toast.error("Failed to add menu item" + err);
     }
   };
 
