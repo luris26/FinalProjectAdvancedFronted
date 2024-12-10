@@ -4,6 +4,7 @@ import { fetchUsers, updateUser } from "../../hooks/userHooks";
 import { useAuth } from "react-oidc-context";
 import { toast } from "react-toastify";
 import InputField from "../../components/InputField";
+import Breadcrumbs from "../../layout/BreadCouts";
 
 interface User {
   userId: number;
@@ -88,6 +89,13 @@ const EditUser: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-20">
+      <Breadcrumbs
+        links={[
+          { to: "/", label: "Inicio" },
+          { to: "/users", label: "Usuarios" },
+          { to: "/edit-user/:userId", label: "editar ordenes" }
+        ]}
+      />
       <h2 className="text-2xl font-semibold mb-6 text-gray-800">Editar Usuario</h2>
       <form onSubmit={handleUpdateUser}>
         <InputField

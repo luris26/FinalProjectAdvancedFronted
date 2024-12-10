@@ -6,9 +6,10 @@ import { toast } from "react-toastify";
 import MenuListItem from "./MenuListItem";
 import Button from "./Button";
 import "react-toastify/dist/ReactToastify.css";
+import Breadcrumbs from "../../layout/BreadCouts";
 
 interface MenuPageProps {
-  token: string;  
+  token: string;
 }
 
 const MenuPage: React.FC<MenuPageProps> = ({ token }) => {
@@ -50,6 +51,12 @@ const MenuPage: React.FC<MenuPageProps> = ({ token }) => {
 
   return (
     <section className="max-w-4xl mx-auto p-6">
+      <Breadcrumbs
+        links={[
+          { to: "/", label: "Inicio" },
+          { to: "/menu", label: "Menú" },
+        ]}
+      />
       <h1 className="text-3xl font-bold text-center mb-8">Menu</h1>
 
       <div className="flex justify-center mb-6">

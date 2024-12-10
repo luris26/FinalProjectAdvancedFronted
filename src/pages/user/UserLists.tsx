@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../pages/menu/Button';
 import Card from '../../layout/CardLayout';
+import Breadcrumbs from '../../layout/BreadCouts';
 
 interface User {
   userId: number;
@@ -59,6 +60,13 @@ const UsersList: React.FC = () => {
 
   return (
     <section className="max-w-4xl mx-auto p-6">
+      <Breadcrumbs
+        links={[
+          { to: "/", label: "Inicio" },
+          { to: "/users", label: "Usuarios" },
+          // { to: "/edit-user/:userId", label: "editar ordenes" }
+        ]}
+      />
       <h1 className="text-3xl font-bold text-center mb-8">Usuarios</h1>
       <div className="flex justify-center mb-6">
         <Button

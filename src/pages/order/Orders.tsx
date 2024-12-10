@@ -7,6 +7,7 @@ import OrderModal from "./OrderModal";
 import { Order } from "../../data/Order";
 import { NewOrder } from "../../data/OrderItem";
 
+
 const OrdersPage: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [menuItems, setMenuItems] = useState<Menu[]>([]);
@@ -92,6 +93,7 @@ const OrdersPage: React.FC = () => {
 
   return (
     <div className="p-6 max-w-7xl mx-auto  pb-32">
+      
       <h1 className="text-3xl font-bold text-center mb-6">Órdenes</h1>
 
       {loading && <p className="text-center text-gray-500">Cargando...</p>}

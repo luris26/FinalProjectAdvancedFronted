@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import InputField from "../../components/InputField";
 import { useAuth } from "react-oidc-context";
 import { OrderItem } from "../../data/OrderItem";
+import Breadcrumbs from "../../layout/BreadCouts";
 
 interface EditMenuItemProps {
   token: string;
@@ -75,6 +76,13 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-20">
+      <Breadcrumbs
+        links={[
+          { to: "/", label: "Inicio" },
+          { to: "/menu", label: "Menú" },
+          { to: "/edit-menu-item/:id", label: "Editar Menú" }
+        ]}
+      />
       <h2 className="text-2xl font-semibold mb-6 text-gray-800">Edit Menu Item</h2>
       <form onSubmit={handleUpdateMenuItem}>
         <InputField
@@ -140,9 +148,8 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
         </div>
         <button
           type="submit"
-          className={`bg-Tan text-white py-2 px-4 rounded hover:bg-TanComplementary transition ${
-            loading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className={`bg-Tan text-white py-2 px-4 rounded hover:bg-TanComplementary transition ${loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           disabled={loading}
         >
           {loading ? "Updating..." : "Update Menu Item"}
