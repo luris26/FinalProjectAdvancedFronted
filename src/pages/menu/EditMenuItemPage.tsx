@@ -41,7 +41,7 @@ const EditMenuItemPage: React.FC<EditMenuItemProps> = ({ token }) => {
           });
         }
       } catch (err) {
-        toast.error("Error loading menu item" + err);
+        toast.error("error cargando el articulo" + err);
       }
     };
 

@@ -26,10 +26,10 @@ const AddMenuItemPage: React.FC<AddMenuItemPageProps> = ({ token }) => {
     e.preventDefault();
     try {
       await addMenuItem(menuItem, token);
-      toast.success("Menu item added successfully!");
+      toast.success("Articulo anadido correctamente");
       navigate("/menu");
     } catch (err) {
-      toast.error("Failed to add menu item" + err);
+      toast.error("error al anadir el articulo" + err);
     }
   };
 

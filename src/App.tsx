@@ -18,6 +18,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PromotionConfigurator from './pages/promotion/PromotionConfigurator';
 import ClipboardExample from './pages/extraAPI/ClipBoard';
 import MainLayout from './layout/MainLayout';
+import AboutPage from './pages/about/about';
 
 const App: React.FC = () => {
   return (
@@ -51,6 +52,7 @@ const App: React.FC = () => {
                 <Route path="/edit-user/:userId" element={<ProtectedRoute><EditUser /></ProtectedRoute>} />
                 <Route path="/promotion" element={<ProtectedRoute><PromotionConfigurator /></ProtectedRoute>} />
                 <Route path="/clipboard" element={<ProtectedRoute><ClipboardExample /></ProtectedRoute>} />
+                <Route path="/about" element={<AboutPage/>}/>
               </Routes>
             </div>
           </MainLayout>

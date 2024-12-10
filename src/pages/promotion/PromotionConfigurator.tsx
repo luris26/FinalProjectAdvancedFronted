@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextInput from '../../components/TextInput';
 import SelectInput from '../../components/SelectInput';
 import NumberInput from '../../components/NumberInput';
@@ -13,7 +13,11 @@ interface Promotion {
 }
 
 const PromotionConfigurator: React.FC = () => {
-  const [promotions, setPromotions] = useState<Promotion[]>([]);
+  const [promotions, setPromotions] = useState<Promotion[]>(() => {
+    const savedPromotions = localStorage.getItem('promotions');
+    return savedPromotions ? JSON.parse(savedPromotions) : [];
+  });
+
   const [formData, setFormData] = useState<Promotion>({
     id: 0,
     name: '',
@@ -24,6 +28,10 @@ const PromotionConfigurator: React.FC = () => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('promotions', JSON.stringify(promotions));
+  }, [promotions]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -138,13 +146,13 @@ const PromotionConfigurator: React.FC = () => {
               <div className="flex gap-2">
                 <button
                   onClick={() => handleEditPromotion(promo.id)}
-                  className="bg-yellow-500 text-white px-3 py-1 rounded"
+                  className="bg-GreenOlive text-white px-3 py-1 rounded"
                 >
                   Editar
                 </button>
                 <button
                   onClick={() => handleDeletePromotion(promo.id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded"
+                  className="bg-Tan text-white px-3 py-1 rounded"
                 >
                   Eliminar
                 </button>
