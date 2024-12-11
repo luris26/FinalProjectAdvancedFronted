@@ -70,8 +70,8 @@ const OrdersPage: React.FC = () => {
   const handleCreateOrder = async (newOrder: NewOrder) => {
     try {
       const createdOrder = await createOrder(newOrder);
-
       const updateOrders = await fetchOrders();
+      
       setOrders(updateOrders || [])
       setIsModalOpen(false);
       console.log("Orden creada:", createdOrder);
