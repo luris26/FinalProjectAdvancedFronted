@@ -71,12 +71,8 @@ const OrdersPage: React.FC = () => {
     try {
       const createdOrder = await createOrder(newOrder);
 
-      const newOrderWithId: Order = {
-        ...createdOrder,
-        orderId: createdOrder.orderId || 0,
-        createdAt: createdOrder.createdAt || null,
-      };
-      setOrders((prevOrders) => [...prevOrders, newOrderWithId]);
+      const updateOrders = await fetchOrders();
+      setOrders(updateOrders || [])
       setIsModalOpen(false);
       console.log("Orden creada:", createdOrder);
     } catch (error) {
