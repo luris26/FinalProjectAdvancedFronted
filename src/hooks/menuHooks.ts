@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  // baseURL: "http://localhost:5073/api/menu",
-  baseURL: "https://api.final-project-luris.duckdns.org/api/Menu",
+  baseURL: "http://localhost:5073/api/menu",
+  // baseURL: "https://api.final-project-luris.duckdns.org/api/Menu",
   headers: {
     "Content-Type": "application/json",
   },

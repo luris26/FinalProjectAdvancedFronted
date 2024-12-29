@@ -19,6 +19,7 @@ import PromotionConfigurator from './pages/promotion/PromotionConfigurator';
 import ClipboardExample from './pages/extraAPI/ClipBoard';
 import MainLayout from './layout/MainLayout';
 import AboutPage from './pages/about/about';
+import TableView from './pages/table/tableIcons';
 
 const App: React.FC = () => {
   return (
@@ -53,6 +54,7 @@ const App: React.FC = () => {
                 <Route path="/promotion" element={<ProtectedRoute><PromotionConfigurator /></ProtectedRoute>} />
                 <Route path="/clipboard" element={<ProtectedRoute><ClipboardExample /></ProtectedRoute>} />
                 <Route path="/about" element={<AboutPage/>}/>
+                <Route path="/tables" element={<ProtectedRoute><TableView /></ProtectedRoute>} />
               </Routes>
             </div>
           </MainLayout>

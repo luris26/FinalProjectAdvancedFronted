@@ -128,8 +128,9 @@ const OrdersPage: React.FC = () => {
           <OrderCard
             key={order.orderId}
             order={order}
-            onComplete={handleCompleteOrder}
-          />
+            onComplete={handleCompleteOrder} onModify={function (order: Order): void {
+              throw new Error("Function not implemented.");
+            } }          />
         ))}
       </div>
 
